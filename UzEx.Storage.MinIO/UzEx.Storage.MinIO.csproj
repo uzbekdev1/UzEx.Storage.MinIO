@@ -9,21 +9,21 @@
     <Product>MinIO Storage</Product>
     <PackageProjectUrl>https://min.io/</PackageProjectUrl>
     <PackageIcon>favicon.png</PackageIcon>
-    <RepositoryUrl>https://github.com/minio/minio-dotnet</RepositoryUrl>
+    <RepositoryUrl>https://github.com/uzbekdev1/UzEx.Storage.MinIO</RepositoryUrl>
     <RepositoryType>Apache</RepositoryType>
-    <PackageReleaseNotes>- New connection string 
-- Logging/proxy impl
-- Make root bucket 
-- Uplaod stream
-- Download stream
-- Search buckets by term</PackageReleaseNotes>
-    <AssemblyVersion>1.0.0.0</AssemblyVersion>
-    <FileVersion>1.0.0.0</FileVersion>
+    <PackageReleaseNotes>New connection string
+Logging/proxy implementation
+Make root bucket
+Upload stream
+Download stream
+Search buckets by term</PackageReleaseNotes>
+    <AssemblyVersion>3.0.0.0</AssemblyVersion>
+    <FileVersion>3.0.0.0</FileVersion>
     <PackageTags>c# .net-core min-io elyor0529 uzex</PackageTags>
     <Copyright />
     <Description>MinIO Storage client</Description>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
-    <Version>2.0.0</Version>
+    <Version>3.0.0</Version>
   </PropertyGroup>
 
   <ItemGroup>
@@ -33,9 +33,6 @@
 
   <ItemGroup>
     <None Update="favicon.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="readme.md">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="favicon.png">

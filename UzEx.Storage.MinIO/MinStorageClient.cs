@@ -8,12 +8,12 @@ using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 using Minio;
 
-namespace ST.Cloud
+namespace UzEx.Storage.MinIO
 {
     /// <summary>
     /// https://github.com/minio/minio-dotnet
     /// </summary>
-    public class MinStoreClient
+    public class MinStorageClient
     {
         private readonly MinioClient _client;
         private readonly string _root;
@@ -43,18 +43,18 @@ namespace ST.Cloud
         ///  
         /// </summary>
         /// <param name="connectionString">min://host:port/access=secret/root or min://domain/access=secret/root</param>
-        public MinStoreClient(string connectionString)
+        public MinStorageClient(string connectionString)
         {
-            if(!connectionString.StartsWith(CONNECTION_PREFIX))
+            if (!connectionString.StartsWith(CONNECTION_PREFIX))
                 throw new Exception("Connection string is wrong");
 
             var slices = connectionString.Replace(CONNECTION_PREFIX, "").Split(new[] { "/", "=" }, StringSplitOptions.RemoveEmptyEntries);
-            
+
             if (slices.Length != 4)
                 throw new Exception("Connection string is wrong");
 
             _root = slices[3];
-            _client = new MinioClient(slices[0], slices[1], slices[2]); 
+            _client = new MinioClient(slices[0], slices[1], slices[2]);
         }
 
         /// <summary>
@@ -62,7 +62,7 @@ namespace ST.Cloud
         /// </summary>
         /// <param name="connectionString">min://host:port/access=secret/root or min://domain/access=secret/root</param>
         /// <param name="proxy"></param>
-        public MinStoreClient(string connectionString, IWebProxy proxy):this(connectionString)
+        public MinStorageClient(string connectionString, IWebProxy proxy) : this(connectionString)
         {
             _client.WithProxy(proxy);
         }
@@ -72,7 +72,7 @@ namespace ST.Cloud
         /// </summary>
         /// <param name="connectionString">min://host:port/access=secret/root or min://domain/access=secret/root</param>
         /// <param name="logger"></param>
-        public MinStoreClient(string connectionString, ILogger logger):this(connectionString)
+        public MinStorageClient(string connectionString, ILogger logger) : this(connectionString)
         {
             _logger = logger;
         }
@@ -84,7 +84,7 @@ namespace ST.Cloud
         /// <param name="access"></param>
         /// <param name="secret"></param>
         /// <param name="root">if don't have automatic created</param>
-        public MinStoreClient(string url, string access, string secret, string root)
+        public MinStorageClient(string url, string access, string secret, string root)
         {
             _root = root;
             _client = new MinioClient(url, access, secret);
@@ -98,7 +98,7 @@ namespace ST.Cloud
         /// <param name="secret"></param>
         /// <param name="root">if don't have automatic created</param>
         /// <param name="proxy"></param>
-        public MinStoreClient(string url, string access, string secret, string root, IWebProxy proxy) : this(url, access, secret, root)
+        public MinStorageClient(string url, string access, string secret, string root, IWebProxy proxy) : this(url, access, secret, root)
         {
             _client.WithProxy(proxy);
         }
@@ -111,7 +111,7 @@ namespace ST.Cloud
         /// <param name="secret"></param>
         /// <param name="root">if don't have automatic created</param>
         /// <param name="logger"></param>
-        public MinStoreClient(string url, string access, string secret, string root, ILogger logger) : this(url, access, secret, root)
+        public MinStorageClient(string url, string access, string secret, string root, ILogger logger) : this(url, access, secret, root)
         {
             _logger = logger;
         }
@@ -188,7 +188,7 @@ namespace ST.Cloud
         /// <param name="bucketName"></param>
         /// <param name="prefix"></param>
         /// <returns></returns>
-        public IEnumerable<string> Search(string bucketName, string prefix)
+        public Task<IEnumerable<string>> Search(string bucketName, string prefix)
         {
             var list = new List<string>();
 
@@ -214,7 +214,7 @@ namespace ST.Cloud
                 WriteLog($"Exception: {e}");
             }
 
-            return list;
+            return Task.FromResult<IEnumerable<string>>(list);
         }
 
         /// <summary>

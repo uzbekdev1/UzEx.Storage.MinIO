@@ -1,7 +1,7 @@
 # UzEx Storage MinIO client
 
 ```
-var client = new MinStoreClient("min://{host}/{root}={psw}/{buket}");
+var client = new MinStorageClient("min://{host}/{root}={psw}/{buket}");
 var prefix = 12;
 
 // upload
