@@ -1,0 +1,47 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Company>UzEx</Company>
+    <Authors>Elyor Latipov</Authors>
+    <PackageId>UzEx.Storage.MinIO</PackageId>
+    <Product>MinIO Storage</Product>
+    <PackageProjectUrl>https://min.io/</PackageProjectUrl>
+    <PackageIcon>favicon.png</PackageIcon>
+    <RepositoryUrl>https://github.com/minio/minio-dotnet</RepositoryUrl>
+    <RepositoryType>Apache</RepositoryType>
+    <PackageReleaseNotes>- New connection string 
+- Logging/proxy impl
+- Make root bucket 
+- Uplaod stream
+- Download stream
+- Search buckets by term</PackageReleaseNotes>
+    <AssemblyVersion>1.0.0.0</AssemblyVersion>
+    <FileVersion>1.0.0.0</FileVersion>
+    <PackageTags>c# .net-core min-io elyor0529 uzex</PackageTags>
+    <Copyright />
+    <Description>MinIO Storage client</Description>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <Version>2.0.0</Version>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="5.0.0" />
+    <PackageReference Include="Minio" Version="3.1.13" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="favicon.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="readme.md">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="favicon.png">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+  </ItemGroup>
+
+</Project>
